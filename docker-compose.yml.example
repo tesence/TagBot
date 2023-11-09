@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  tag_bot:
+    build: .
+    image: tag_bot:latest
+    container_name: tag_bot
+    environment:
+      TAG_BOT_TOKEN: "BOT_TOKEN_HERE"
+      TAG_BOT_DB_FILE_PATH: /path/in/the/container/database.db
+      # TAG_BOT_LOG_LEVEL: "INFO"
+    volumes:
+      - /path/on/the/host/database.db:/path/in/the/container/database.db

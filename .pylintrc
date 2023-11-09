@@ -1,0 +1,15 @@
+[REPORTS]
+output-format=colorized
+msg-template='{abspath}:{line:5d},{column:2d}: {msg} ({symbol})'
+disable=
+    assigning-non-slot,
+    too-few-public-methods,
+    too-many-arguments,
+    no-value-for-parameter,
+    missing-module-docstring
+
+[FORMAT]
+max-line-length=119
+
+[DESIGN]
+max-args=10
