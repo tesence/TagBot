@@ -35,7 +35,7 @@ class Tag(commands.Cog):
         """
         async with asqlite.connect(DB_NAME) as connection:
             query = "UPDATE tags SET usage = usage + 1 " \
-                    "WHERE LOWER(code) IS LOWER(?) AND guild_id = ? AND deleted_at IS NULL " \
+                    "WHERE code = ? AND guild_id = ? AND deleted_at IS NULL " \
                     "RETURNING content;"
             logger.debug(self._format_log_output(query, code, interaction.guild_id))
             tag = await connection.fetchone(query, code, interaction.guild_id)

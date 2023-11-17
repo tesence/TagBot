@@ -52,11 +52,17 @@ class Bot(commands.Bot):
 
     # pylint: disable=missing-function-docstring
     async def on_interaction(self, interaction: discord.Interaction):
-        message = f"Command invoked by {interaction.user.name} ({interaction.user.display_name}): " \
+
+        if interaction.type == discord.InteractionType.autocomplete:
+            return
+
+        message = f"Command invoked by {interaction.user.name} ({interaction.user.display_name}): " + \
                   f"/{interaction.command.qualified_name}"
 
         if "options" in interaction.data:
-            arguments = [f"{opt['name']}='{opt['value']}'" for opt in interaction.data['options'][0]['options']]
+            options = interaction.data['options'][0]['options'] if interaction.command.parent \
+                      else interaction.data['options']
+            arguments = [f"{opt['name']}='{opt['value']}'" for opt in options]
             message += f" {' '.join(arguments)}"
 
         logger.info(message)
