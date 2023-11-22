@@ -1,4 +1,4 @@
-FROM python:3.10-alpine
+FROM python:3.11.6-alpine
 
 # Required to install aiosqlite
 RUN apk add --no-cache git
